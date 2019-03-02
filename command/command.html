@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Command()</title>
+</head>
+<body>
+<code>
+	<b>command() 미션!</b>
+<pre>
+
+var todoList = [];
+
+var totalStatus = { todo : 0, doing: 0, done: 0 };
+
+
+function command(param) {
+
+	//구분자로 분리하기
+	var temp = param.split('$');
+
+	
+	//add, update, etc.
+	var inst = temp[0].toUpperCase().replace(/\s/g,"").toString();
+	
+
+	//할 일 내용
+	var todo = temp[1];
+	
+
+	//이동할 상태
+	var destination = temp[2];
+	
+	
+	var instruction = {
+		'ADD': function() {
+			todoList.push({id: todoList.length + 1, todo: todo, status: 'todo'});
+
+			totalStatus.todo = todoList.filter(todoItem => todoItem.status == 'todo').length;
+
+
+			console.log('-> id: ' + todoList.length + ' \"'+ todoList[0].todo + '\" 항목이 새로 추가됐습니다.');
+			console.log('-> 현재상태  todo:' + totalStatus.todo + ', doing: ' + totalStatus.doing + ', done: ' + totalStatus.done);
+		},
+		'SHOW': function() {
+			
+			//var tem = todoList.filter(todoItem => todoItem.status == todo);
+
+			todoList.forEach(todoItem => console.log('-> ' + todoItem.id, todoItem.todo));
+			
+			// console.log(tem);
+			// console.log('-> ', tem.id, tem.todo);
+		},
+		'UPDATE': function() {
+			todoList[todo - 1].status = destination
+			
+
+			totalStatus.todo = todoList.filter(todoItem => todoItem.status == 'todo').length;
+			totalStatus.doing = todoList.filter(todoItem => todoItem.status == 'doing').length;
+			totalStatus.done = todoList.filter(todoItem => todoItem.status == 'done').length;
+
+			console.log('-> 현재상태  todo:' + totalStatus.todo + ', doing: ' + totalStatus.doing + ', done: ' + totalStatus.done);
+		}
+
+	}
+
+	
+	
+	instruction[inst]();
+
+}
+</pre>
+</code>
+<script type="text/javascript">
+var todoList = [];
+
+var totalStatus = { todo : 0, doing: 0, done: 0 };
+
+
+function command(param) {
+
+	//구분자로 분리하기
+	var temp = param.split('$');
+
+	
+	//add, update, etc.
+	var inst = temp[0].toUpperCase().replace(/\s/g,"").toString();
+	
+
+	//할 일 내용
+	var todo = temp[1];
+	
+
+	//이동할 상태
+	var destination = temp[2];
+	
+	
+	var instruction = {
+		'ADD': function() {
+			todoList.push({id: todoList.length + 1, todo: todo, status: 'todo'});
+
+			totalStatus.todo = todoList.filter(todoItem => todoItem.status == 'todo').length;
+
+
+			console.log('-> id: ' + todoList.length + ' \"'+ todoList[0].todo + '\" 항목이 새로 추가됐습니다.');
+			console.log('-> 현재상태  todo:' + totalStatus.todo + ', doing: ' + totalStatus.doing + ', done: ' + totalStatus.done);
+		},
+		'SHOW': function() {
+			
+			//var tem = todoList.filter(todoItem => todoItem.status == todo);
+
+			todoList.forEach(todoItem => console.log('-> ' + todoItem.id, todoItem.todo));
+			
+			// console.log(tem);
+			// console.log('-> ', tem.id, tem.todo);
+		},
+		'UPDATE': function() {
+			todoList[todo - 1].status = destination
+			
+
+			totalStatus.todo = todoList.filter(todoItem => todoItem.status == 'todo').length;
+			totalStatus.doing = todoList.filter(todoItem => todoItem.status == 'doing').length;
+			totalStatus.done = todoList.filter(todoItem => todoItem.status == 'done').length;
+
+			console.log('-> 현재상태  todo:' + totalStatus.todo + ', doing: ' + totalStatus.doing + ', done: ' + totalStatus.done);
+		}
+
+	}
+
+	
+	
+	instruction[inst]();
+
+}
+
+//map filter reduce(상태)
+
+
+// command(‘Add $냐옹이는 냐옹냐옹’);
+// -> id: 2 “냐옹이는냐옹냐옹” 항목이 새로 추가됐습니다.
+// -> 현재 상태: todo:  1 , doing:  0 , done:  0
+
+
+// command(“show$todo”);
+// -> 1, 냐옹이는냐옹냐옹
+
+// command(‘update$1$doing’);
+// -> 현재 상태: todo:  0 , doing:  1 , done:  0
+
+// command(“show$doing”);
+// -> 1, 냐옹이는냐옹냐옹
+
+// command(“update$1$done”);
+// -> 현재 상태: todo:  0 , doing:  0 , done:  1
+</script>
+</body>
+</html>
+
