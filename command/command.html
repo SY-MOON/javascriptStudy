@@ -39,7 +39,7 @@ function command(param) {
 			totalStatus.todo = todoList.filter(todoItem => todoItem.status == 'todo').length;
 
 
-			console.log('-> id: ' + todoList.length + ' \"'+ todoList[0].todo + '\" 항목이 새로 추가됐습니다.');
+			console.log('-> id: ' + todoList.length + ' \"'+ temp[1] + '\" 항목이 새로 추가됐습니다.');
 			console.log('-> 현재상태  todo:' + totalStatus.todo + ', doing: ' + totalStatus.doing + ', done: ' + totalStatus.done);
 		},
 		'SHOW': function() {
@@ -102,7 +102,7 @@ function command(param) {
 			totalStatus.todo = todoList.filter(todoItem => todoItem.status == 'todo').length;
 
 
-			console.log('-> id: ' + todoList.length + ' \"'+ todoList[0].todo + '\" 항목이 새로 추가됐습니다.');
+			console.log('-> id: ' + todoList.length + ' \"'+ temp[1] + '\" 항목이 새로 추가됐습니다.');
 			console.log('-> 현재상태  todo:' + totalStatus.todo + ', doing: ' + totalStatus.doing + ', done: ' + totalStatus.done);
 		},
 		'SHOW': function() {
